@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 
-import login from './login';
-import search from './search';
+import data from './data';
+import chart from './chart';
 
 const rootReducer = combineReducers({
-    login,
-    search
+    data,
+    chart
 });
 
 export default rootReducer;

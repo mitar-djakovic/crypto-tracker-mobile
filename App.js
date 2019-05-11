@@ -1,27 +1,28 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { store } from './src/store/index';
 
-import AppLayout from "./src/components/AppLayout";
+import AppLayout from './src/components/AppLayout';
+import Diagram from './src/components/Diagram';
+
+const MainNavigator = createSwitchNavigator(
+    {
+        Home: { screen: AppLayout },
+        Diagram: { screen: Diagram },
+    }, {
+        initialRouteName: 'Home'
+    }
+);
+
+const Application = createAppContainer(MainNavigator);
 
 export default class App extends React.Component {
     render() {
         return (
             <Provider store={store}>
-                <PaperProvider theme={theme}>
-                    <AppLayout />
-                </PaperProvider>
+                <Application />
             </Provider>
         );
     }
 }
-
-const theme = {
-    ...DefaultTheme,
-    colors: {
-        ...DefaultTheme.colors,
-        primary: '#009788',
-        accent: 'yellow',
-    },
-};
